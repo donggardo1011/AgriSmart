@@ -1,0 +1,69 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.sublime-workspace
+*.sublime-project
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Logs
+*.log
+logs/
+
+# Database Files
+*.db
+*.sqlite
+*.sqlite3
+users.db
+
+# Large Model Files
+models/
+models/*.pt
+models/*.pth
+*.onnx
+*.tflite
+
+# Generated/Output Directories
+uploads/
+training_runs/
+yolo_exports/
+outputs/
+
+# Test Results
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Temporary Files
+*.tmp
+temp/
+tmp/
+dataset_clean/

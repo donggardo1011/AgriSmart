@@ -1,0 +1,18 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - build/**
+    - .dart_tool/**
+    - .flutter-plugins
+    - .flutter-plugins-dependencies
+    - android/**
+    - ios/**
+    - linux/**
+    - macos/**
+    - windows/**
+    - web/**
+
+linter:
+  rules:
+    avoid_print: false

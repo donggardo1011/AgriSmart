@@ -1,0 +1,39 @@
+{
+  "disease_images": {
+    "bacterial_blight": {
+      "image_url": "/images/diseases/bacterial_blight.jpg",
+      "image_number": 7,
+      "symptoms_summary": "Bacterial blight initially appears as water-soaked streaks along major leaf veins starting from leaf tips or margins. These streaks have wavy margins and gradually develop a straw or yellowish color. In severe cases, entire leaves become wavy and thin as if dried out. The disease produces characteristic bacterial ooze (resembling milky dew drops) on young lesions during wet conditions. On seedlings, it causes the kresek stage where leaves roll up and become grayish-green.",
+      "prevention": "Effective prevention requires using disease-resistant varieties when available. Practice field sanitation by removing infected rice residues and weeds. Avoid excessive nitrogen fertilization as it promotes disease. Maintain proper water management by controlling irrigation to reduce leaf wetness, since bacteria enters through stomates and wounds. Seed treatment with hot water (50-53°C for 30 minutes) can eliminate seed-borne inoculum. Regular field scouting to detect early infections is crucial.",
+      "treatment": "Apply copper-based bactericides or streptomycin sulfate at the earliest sign of disease. Remove heavily infected seedlings during kresek stage. Improve field drainage to reduce humidity. Apply treatments at 7-10 day intervals during favorable disease conditions. Avoid overhead irrigation when disease is active. Always follow local pesticide regulations."
+    },
+    "leaf_blast": {
+      "image_url": "/images/diseases/leaf_blast.jpg",
+      "image_number": 3,
+      "symptoms_summary": "Leaf blast typically begins as small white or gray-green spots with dark brown margins on leaves. These spots quickly develop into characteristic spindle or diamond-shaped lesions with gray or whitish centers surrounded by dark brown borders. Unlike other diseases, blast can appear on older leaves first and spread upward. In seedlings, infected leaves turn grayish-green and roll inward. As disease progresses, lesions coalesce forming large necrotic areas.",
+      "prevention": "Select resistant varieties suited to your region, as varietal resistance is the most effective prevention. Practice proper disposal of rice straw which harbors blast fungus. Maintain adequate field drainage and ensure spacing to promote air circulation and reduce leaf wetness. Apply nitrogen appropriately as excessive amounts increase susceptibility. Use blast-suppressive water management practices, particularly avoiding standing water on leaves. Seed treatment with Trichoderma provides protection.",
+      "treatment": "Apply fungicides (tricyclazole, azoxystrobin, propiconazole) at the earliest symptom appearance. Apply at 7-10 day intervals under favorable conditions. Ensure thorough leaf coverage. Remove heavily infected tillers if infestation is localized. Improve field drainage and reduce irrigation frequency to decrease humidity. Follow local agricultural office guidelines."
+    },
+    "brown_spot": {
+      "image_url": "/images/diseases/brown_spot.jpg",
+      "image_number": 6,
+      "symptoms_summary": "Brown spot appears initially as small, circular to oval brown lesions resembling sesame seeds on the leaf surface. These lesions have characteristic gray or whitish centers surrounded by yellow halos and reddish-brown borders. As disease progresses, lesions enlarge and may merge creating large areas of dead tissue. In severe cases, entire leaves become yellow-brown and dry out. The disease can infect grains, causing them to become discolored and poorly filled, significantly reducing grain quality.",
+      "prevention": "Maintain plant vigor through proper fertilization, particularly adequate potassium levels which enhance resistance. Use disease-free seeds from certified sources or treat with hot water (50-53°C for 30 minutes). Practice field sanitation by removing infected crop residues. Maintain moderate irrigation avoiding both excessive moisture and drought stress. Apply balanced fertilization with emphasis on potassium and phosphorus. Avoid early transplanting into high-pressure fields.",
+      "treatment": "Apply fungicides (carbendazim or copper-based) when symptoms first appear. Maintain proper plant nutrition during infection period. Apply treatment at 7-10 day intervals if symptoms persist. Focus on preventing grain infection. Encourage plant recovery through good management practices."
+    },
+    "sheath_blight": {
+      "image_url": "/images/diseases/sheath_blight.jpg",
+      "image_number": 4,
+      "symptoms_summary": "Sheath blight symptoms first appear as circular or oblong lesions on lower leaf sheaths, typically appearing green-gray and water-soaked. These are usually first noticed during late tillering or early stem elongation stages. As disease progresses under high humidity, lesions spread upward to envelop the entire sheath and move onto leaves. When conditions dry, lesions turn tan to brown with distinct brown borders. Black sclerotia develop within lesions about 6 days after infection. Severe infections result in complete leaf death.",
+      "prevention": "Practice thorough crop residue removal and composting since no resistant varieties exist. Maintain proper row spacing for air circulation and reduce humidity. Apply moderate nitrogen fertilization. Manage irrigation to reduce prolonged wetness during high-risk growth stages. Ensure proper field drainage. Disinfect equipment between fields and seasons. Monitor fields during high-risk periods for early symptoms.",
+      "treatment": "Apply fungicides (hexaconazole, propiconazole, carbendazim) at the first sign of symptoms, typically during late tillering stage. Apply at 10-14 day intervals if conditions favor continued disease. Ensure complete coverage of lower sheaths and affected areas. Reduce irrigation frequency and improve drainage to support chemical control. Follow local agricultural office recommendations."
+    },
+    "tungro": {
+      "image_url": "/images/diseases/tungro.jpg",
+      "image_number": 5,
+      "symptoms_summary": "Tungro symptoms appear as yellow to orange discoloration of leaves, beginning from leaf tips and margins. Affected plants are severely stunted with height and biomass significantly reduced. Tillering is dramatically reduced, resulting in fewer shoots. Leaves develop mottling or chlorotic striping patterns. Plant maturity is delayed, and grain formation is poor or completely sterile. In Indica rice varieties, leaves turn bright orange, while Japonica varieties show more yellow discoloration. Symptom severity depends on plant age at infection.",
+      "prevention": "Since no chemical cures exist, control the green leafhopper vector through resistant varieties when available. Eliminate weeds that host the virus and leafhoppers. Establish windbreaks and maintain borders with trap crops to reduce leafhopper movement. Avoid planting during peak leafhopper seasons. Apply early season insecticide when vectors are present to reduce transmission before serious spread. Monitor regularly for early yellowing indicating infection.",
+      "treatment": "Apply insecticides targeting green leafhoppers to prevent further transmission (not to cure virus). Remove and destroy infected plants and volunteer rice. Control leafhopper adult populations to prevent transmission. Use yellow sticky traps to monitor vector populations. Maintain vector control throughout growing season. Focus on protecting surrounding healthy plants from infection."
+    }
+  }
+}

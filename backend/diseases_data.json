@@ -1,0 +1,269 @@
+{
+  "diseases": [
+    {
+      "key": "bacterial_blight",
+      "display_en": "Bacterial Blight",
+      "display_ceb": "Bacterial Blight",
+      "causal_agent": "Xanthomonas oryzae pv. oryzae",
+      "severity": "High",
+      "urgency": "Act quickly to prevent spread and yield loss",
+      "image_url": "/images/diseases/bacterial_blight.jpg",
+      "explanation_en": "Bacterial blight is one of the most serious rice diseases. It is caused by the bacterium Xanthomonas oryzae pv. oryzae. The disease usually starts at the leaf tip or leaf edge and can spread rapidly during rainy, windy, and wet conditions. Early infection can result in yield loss as high as 70% in susceptible varieties.",
+      "explanation_ceb": "Ang bacterial blight usa ka seryoso nga sakit sa humay nga tungod sa bakterya. Kasagaran magsugod kini sa tumoy o kilid sa dahon ug dali mokatag panahon sa ulan, kusog nga hangin, ug basa nga palibot.",
+      "symptoms_summary_en": "Bacterial blight initially appears as water-soaked streaks along major leaf veins starting from the leaf tips or margins. These streaks have wavy margins and gradually develop a straw or yellowish color. In severe cases, entire leaves become wavy and thin as if dried out. The disease produces characteristic bacterial ooze (resembling milky dew drops) on young lesions during wet conditions. On seedlings, it causes the kresek stage where leaves roll up and become grayish-green. Infected leaves may develop a foul smell indicating secondary bacterial colonization.",
+      "symptoms_en": [
+        "Yellowing and wilting from the leaf tip or leaf margin",
+        "Grayish-green leaves that roll up on seedlings (kresek stage)",
+        "Water-soaked streaks with wavy margins on leaf blades",
+        "Straw-colored lesions becoming yellow to grayish white",
+        "Bacterial ooze resembling milky dew drops on young lesions",
+        "Black dots from saprophytic fungi growth on old lesions",
+        "Leaves dry out and wilt in severe infection",
+        "Seedlings may suddenly wilt and die in severe cases"
+      ],
+      "symptoms_ceb": [
+        "Pagkapula o pagkanilaw gikan sa tumoy o kilid sa dahon",
+        "Abumadong-dilaw na mga dahon na tumiligid sa mga bigas",
+        "Mga guhit na parang basang-basa na may ulot na kilid",
+        "Mga samad na kulay uhot na nagiging dilaw o grayish white",
+        "Bacterial ooze na parang gatas na aining sa kabataan na mga samad",
+        "Itim na ponto mula sa fungal na paglaki sa lumang mga samad",
+        "Mamala ug malaya ang mga dahon kung grabe na ang impeksyon",
+        "Ang semilya mahimong kalit nga malaya sa grabe nga kaso"
+      ],
+      "prevention_summary_en": "Effective prevention of bacterial blight requires a multi-faceted approach starting with the use of disease-resistant varieties when available. Proper field sanitation including removal of infected rice residues and weeds that may harbor the bacteria is essential. Avoid excessive nitrogen fertilization as it promotes disease development. Maintain proper water management by controlling irrigation to reduce leaf wetness, as the bacteria enters through stomates and wounds. During the off-season, ensure complete crop destruction to break the disease cycle. Seed treatment with hot water (50-53°C for 30 minutes) can eliminate seed-borne inoculum. Regular field scouting to detect early infections is crucial for timely intervention.",
+      "prevention_en": [
+        "Use resistant rice varieties when available",
+        "Practice proper field sanitation and crop residue management",
+        "Avoid excess nitrogen fertilization",
+        "Maintain balanced irrigation to reduce leaf wetness",
+        "Use disease-free or treated seeds",
+        "Apply hot water treatment to seeds (50-53°C for 30 minutes)",
+        "Rotate with non-host crops",
+        "Scout fields regularly for early detection"
+      ],
+      "treatment_summary_en": "Once bacterial blight appears in the field, management focuses on limiting further spread and minimizing yield loss. Copper-based bactericides can be used at the earliest sign of the disease, though their effectiveness depends on application timing and environmental conditions. Streptomycin sulfate is also effective but requires proper dosage and application frequency as per local agricultural recommendations. Roll out the field before recovery (during the kresek stage) to expose infected seedlings and prevent further spread. Remove and destroy heavily infected plants. Improve drainage to reduce humidity and leaf wetness. Continue regular monitoring and apply follow-up treatments at 7-10 day intervals if weather conditions favor disease development.",
+      "treatment_en": [
+        "Apply copper-based bactericides at first symptom appearance",
+        "Use streptomycin sulfate following local agricultural office recommendations",
+        "Remove heavily infected seedlings during kresek stage",
+        "Improve field drainage to reduce humidity",
+        "Apply treatments at 7-10 day intervals during favorable disease conditions",
+        "Avoid overhead irrigation when disease is active",
+        "Follow local pesticide regulations and safety guidelines"
+      ],
+      "causes_en": [
+        "Bacteria (Xanthomonas oryzae pv. oryzae)",
+        "Bacteria entering through wounds or stomata",
+        "Heavy rain and strong wind spreading bacteria",
+        "Contaminated irrigation water carrying bacteria",
+        "Use of infected seeds or seedlings",
+        "High humidity with relative humidity above 70%",
+        "Temperature range of 25-34°C favoring disease development",
+        "Excess nitrogen fertilizer increasing disease severity"
+      ],
+      "causes_ceb": [
+        "Bakterya (Xanthomonas oryzae pv. oryzae)",
+        "Mga bakterya na pumapasok sa pamamagitan ng sugat o stomata",
+        "Kusog na ulan at hangin na nagdadala ng bakterya",
+        "Nahugawang tubig sa irigasyon na nagdadala ng bakterya",
+        "Paggamit ng natakdan na liso o semilya",
+        "Taas na humidity na may humility sa itaas ng 70%",
+        "Temperatura mula 25-34°C na kinabibigyan ang sakit",
+        "Sobra ng nitrogen na abono na nagpapataas sa sakit"
+      ]
+    },
+    {
+      "key": "leaf_blast",
+      "display_en": "Leaf Blast",
+      "display_ceb": "Leaf Blast",
+      "causal_agent": "Magnaporthe oryzae (fungus)",
+      "severity": "High",
+      "urgency": "Act early because blast can spread quickly",
+      "image_url": "/images/diseases/leaf_blast.jpg",
+      "explanation_en": "Leaf blast is one of the most destructive rice diseases worldwide, caused by the fungus Magnaporthe oryzae. It forms distinctive spindle-shaped lesions on leaves and can lead to serious yield loss if not managed early. The disease can cause complete crop loss in severe cases, with up to 50% yield loss observed. Blast spreads rapidly in wet and humid conditions.",
+      "explanation_ceb": "Ang leaf blast usa ka fungal disease sa humay nga tungod sa Magnaporthe oryzae. Nagporma kini og klarong samad sa dahon ug mahimong moresulta sa dakong pagkawala sa ani kung dili dayon maatiman.",
+      "symptoms_summary_en": "Leaf blast typically begins as small white or gray-green spots with dark brown margins on leaves. These spots quickly develop into characteristic spindle or diamond-shaped lesions with gray or whitish centers surrounded by dark brown borders. Unlike other leaf diseases, blast can appear on older leaves first and spread upward.  In seedlings, infected leaves turn grayish-green and roll inward. As disease progresses, lesions coalesce forming large necrotic areas that eventually turn the entire leaf gray-brown. The disease can infect collar regions causing 'collar blast' which severely weakens the plant.",
+      "prevention_summary_en": "Select resistant varieties suited to your region, as varietal resistance is the most effective prevention. Practice proper disposal of rice straw which harbors blast fungus survival structures. Maintain adequate field drainage and ensure spacing to promote air circulation and reduce leaf wetness. Apply nitrogen appropriately as excessive amounts increase susceptibility. Use blast-suppressive water management practices, particularly avoiding standing water on leaves. Seed treatment with biocontrol agents like Trichoderma provides additional protection. Regular monitoring allows early detection before the disease becomes epidemic.",
+      "treatment_summary_en": "Apply protectant fungicides containing propiconazole, tricyclazole, azoxystrobin, or pyroquilon at the earliest symptom sign. Fungicides are most effective when applied preventively or at first symptoms before widespread disease. Apply at 7-10 day intervals under highly favorable conditions (cool, wet weather). Ensure thorough leaf coverage for maximum effectiveness. Remove heavily infected tillers if infestation is localized. Improve field drainage and reduce irrigation frequency to decrease humidity. Follow local agricultural office guidelines for fungicide selection and rates.",
+      "symptoms_en": [
+        "Spindle-shaped or diamond-shaped lesions on leaves",
+        "Gray or whitish center with dark brown margins",
+        "Small white/gray-green spots with dark borders initially",
+        "Lesions enlarge and merge causing large dead areas",
+        "Severely infected leaves may dry prematurely",
+        "Leaf tips and leaf bases can be affected",
+        "In seedlings: infected leaves turn grayish-green and roll up",
+        "On mature plants: collar blast causes leaf death and plant weakness",
+        "Nodal rot and black discoloration on stems and nodes"
+      ],
+      "symptoms_ceb": [
+        "Mga samad na spindle-shaped o diamond-shaped sa mga dahon",
+        "Abu o maputing tunga na may madilim na brown na kilid",
+        "Gagmay na maputing/grayish-green na mga tuldok na may madilim na hangganan",
+        "Lumalaking mga samad na nagsasama at lumilikha ng malalaking patayong lugar",
+        "Ang grabeng natakdan na mga dahon ay maaaring mamala nang maaga",
+        "Ang mga tumoy at batayan ng dahon ay maaaring makasacrifice",
+        "Sa mga bigas: ang natakdan na mga dahon ay nagiging grayish-green at tumitigid",
+        "Sa mga tanom na laki: ang collar blast ay nakakaursang patay sa dahon",
+        "Nodal rot at itim na kulay sa mga tangkay at node"
+      ]
+    },
+    {
+      "key": "brown_spot",
+      "display_en": "Brown Spot",
+      "display_ceb": "Brown Spot",
+      "causal_agent": "Bipolaris oryzae (fungus)",
+      "severity": "Moderate",
+      "urgency": "Monitor closely and manage early if spreading",
+      "explanation_en": "Brown spot is a fungal disease that produces brown lesions on rice leaves, causing both yield and quality loss. It often becomes worse when rice plants are weak, nutrient-deficient, or under drought stress. The disease is historically linked to the Great Bengal Famine of 1943, which killed about 2 million people. Modern brown spot is usually minor but can cause 45% yield loss in severe cases.",
+      "explanation_ceb": "Ang brown spot usa ka fungal disease ng humay na nakadilaw ang mga samad. Kasagaran mograbe kung huyang ang tanom, kulang sa nutrisyon, o na-stress sa hulaw.",
+      "symptoms_en": [
+        "Small brown oval or circular spots on leaves (like sesame seeds)",
+        "Gray or whitish centers with yellow halos around lesions",
+        "Early lesions appear as small dark brown spots on seedlings",
+        "Mature lesions show reddish-brown borders and gray centers",
+        "Spots may enlarge and merge when severe",
+        "Leaves may become yellow and dry in advanced infection",
+        "Severe infection causes leaves to split and die",
+        "Brown-black spots can appear on leaf sheaths, panicles and grains",
+        "Infected grains become discolored and poorly filled",
+        "Leaf surface breaks and releases black spores when wet"
+      ],
+      "symptoms_ceb": [
+        "Gagmay na brown na oval o lingin na mga tuldok sa dahon",
+        "Abu o maputing gitna na may dilaw na palibot sa mga samad",
+        "Ang maaring mga samad ay lumilitaw bilang gagmay na madilim na brown na tuldok",
+        "Ang lumalaking mga samad ay nagpapakita ng reddish-brown na hangganan",
+        "Ang mga tuldok ay maaaring lumaki at magkaisa kung grabe na",
+        "Ang mga dahon ay maaaring maging dilaw at mamala sa advanced na kaso",
+        "Ang mabigat na impeksyon ay nakakaurs na putok at patay",
+        "Mga brown-black na tuldok ay maaaring makita sa leaf sheath at panicles",
+        "Ang natakdan na lugas ay nagiging walang kulay at dili maayong napuno",
+        "Ang ibabaw ng dahon ay putok at naglalabas ng itim na spore kung basa"
+      ],
+      "image_url": "/images/diseases/brown_spot.jpg",
+      "symptoms_summary_en": "Brown spot appears initially as small, circular to oval brown lesions resembling sesame seeds on the leaf surface. These lesions have characteristic gray or whitish centers surrounded by yellow halos and reddish-brown borders. As disease progresses under favorable conditions, lesions enlarge and may merge creating large areas of dead tissue. In severe cases, entire leaves become yellow-brown and dry out. The disease can infect grains, causing them to become discolored and poorly filled, significantly reducing grain quality and market value.",
+      "prevention_summary_en": "Maintain plant vigor through proper fertilization, particularly adequate potassium levels which enhance resistance. Use disease-free seeds from certified sources or treat with hot water at 50-53°C for 30 minutes. Practice field sanitation by removing infected crop residues. Maintain moderate irrigation avoiding both excessive moisture and drought stress. Apply balanced fertilization with emphasis on potassium and phosphorus for healthy plant development. Avoid early transplanting into high-pressure fields where disease inoculum is abundant.",
+      "treatment_summary_en": "Apply fungicides (carbendazim or copper-based) when symptoms first appear. Maintain proper plant nutrition during infection period. Apply treatment at 7-10 day intervals if symptoms persist. Focus on preventing grain infection during flowering stages. Encourage plant recovery through good management practices including proper water and nutrient management. Follow local agricultural office guidelines."
+    },
+    {
+      "key": "tungro",
+      "display_en": "Tungro",
+      "display_ceb": "Tungro",
+      "causal_agent": "Rice Tungro Virus (RTBV + RTSV) - transmitted by green leafhoppers",
+      "severity": "High",
+      "urgency": "Immediate action is recommended - extremely destructive",
+      "explanation_en": "Tungro is a serious viral rice disease transmitted by green leafhoppers, occurring widely in South and Southeast Asia. It was first identified in 1965 at IRRI (Philippines). The disease can cause 100% yield loss in severe early infections. Transmission is very fast (within 5-7 days). It causes severe stunting, yellow-orange discoloration, and major yield loss.",
+      "explanation_ceb": "Ang tungro usa ka viral disease sa humay na gidala ng green leafhoppers. Mahimo kini makapahinay sa pagtubo, mopadilaw o mopaka-orange sa dahon, ug makapawala og dako sa ani.",
+      "symptoms_en": [
+        "Yellow to orange leaf discoloration starting from leaf tips",
+        "Stunted plant growth - plants much smaller than normal",
+        "Reduced tillering - fewer shoots per plant",
+        "Mottling, chlorosis, or striping on leaves",
+        "Delayed flowering and maturity",
+        "Poor or sterile grain filling",
+        "Small, unfilled or completely discolored grains",
+        "In Indica varieties: orange discoloration",
+        "In Japonica varieties: yellowish discoloration",
+        "Disease severity depends on plant age at infection"
+      ],
+      "symptoms_ceb": [
+        "Dilaw hangtod orange na pag-usab sa kolor na nagsisimula sa mga tumoy",
+        "Pahinay na pagtubo - mas gagmay ang tanom kaysa normal",
+        "Dikagamay na pagdami - mas papang na sanga",
+        "Mottling, chlorosis, o striping sa mga dahon",
+        "Nalangan ang pagpamulak at pagtamo",
+        "Maigi o sterile na pagpuno ng lugas",
+        "Gagmay, walang laman o ganap na nako-discolor na mga lugas",
+        "Sa Indica varieties: orange na kulay",
+        "Sa Japonica varieties: dilawang kulay",
+        "Ang kakusog ng sakit ay nakasalalay sa edad ng tanom sa oras ng impeksyon"
+      ],
+      "image_url": "/images/diseases/tungro.jpg",
+      "symptoms_summary_en": "Tungro symptoms appear as yellow to orange discoloration of leaves, beginning from leaf tips and margins and spreading throughout the plant. Affected plants are severely stunted with height and biomass significantly reduced. Tillering is dramatically reduced, resulting in fewer shoots than normal plants. Leaves develop mottling or chlorotic striping patterns. Plant maturity is delayed, and grain formation is poor or completely sterile. In Indica rice varieties, leaves turn bright orange, while Japonica varieties show more yellow discoloration. Symptom severity depends heavily on plant age at infection, with earlier infections causing more damage.",
+      "prevention_summary_en": "Since no chemical cures exist for tungro virus, control focuses on preventing the green leafhopper vector. Select tungro-resistant varieties when available. Eliminate weeds that host the virus and leafhoppers. Establish windbreaks and maintain borders with trap crops to reduce leafhopper movement into fields. Avoid planting during peak leafhopper seasons. Apply early season insecticide when vectors are present to reduce transmission before serious spread. Monitor fields regularly for early yellowing indicating infection.",
+      "treatment_summary_en": "Apply insecticides targeting green leafhoppers to prevent further transmission, though chemicals cannot cure the virus infection. Remove and destroy infected plants and volunteer rice to eliminate virus source. Control leafhopper adult populations consistently throughout growing season. Use yellow sticky traps to monitor vector populations. Focus management efforts on protecting surrounding healthy plants from infection. Work with local agriculture office for vector control recommendations."
+    },
+    {
+      "key": "sheath_blight",
+      "display_en": "Sheath Blight",
+      "display_ceb": "Sheath Blight",
+      "causal_agent": "Rhizoctonia solani (fungus)",
+      "severity": "High",
+      "urgency": "Act quickly - can cause up to 50% yield loss",
+      "explanation_en": "Sheath blight is a major fungal rice disease caused by Rhizoctonia solani. It can cause yield loss up to 50% and affects rice production in India and other countries across Asia and the southern US. The disease primarily affects the leaf sheaths and leaves of rice plants. Unlike rice blast, resistant cultivars have not been found, making integrated management essential. Chemical control is currently the most effective option.",
+      "explanation_ceb": "Ang sheath blight usa ka dakong fungal disease sa humay na tungod sa Rhizoctonia solani. Mahimo kini makapahinay sa ani hanggang 50% at nakaapekto sa paanim sa India at ibang bansa sa Asya ug southern US. Ang sakit ay pangunahing nakaapekto sa leaf sheaths at mga dahon.",
+      "symptoms_en": [
+        "Circular or oblong lesions on lower leaves, usually green-gray and water-soaked",
+        "Lesions appear in late tillering or early internode elongation stage",
+        "Lesions spread and reach upper parts of plant under high humidity",
+        "When drier: lesions turn tan with brown borders",
+        "Leaf dieback and sun penetration allows lesions to dry",
+        "Sclerotia production near infection site (about 6 days)",
+        "Black sclerotia fall off and survive in soil",
+        "Infection spreads through field via irrigation water",
+        "In severe cases: widespread leaf death and plant weakness",
+        "Better conditions at high humidity and low sunlight"
+      ],
+      "symptoms_ceb": [
+        "Lingin o oblong na mga samad sa ibabaw na mga dahon, kasagaran green-gray at basa",
+        "Ang mga samad ay lumilitaw sa huli ng pagtilis o maagang panahon ng paghahabang node",
+        "Ang mga samad ay kumakalat at umaabot sa itaas na bahagi ng tanom sa taas na humidity",
+        "Kung mas basa: ang mga samad ay nagiging tan na may brown na hangganan",
+        "Ang pagkamatay ng dahon at pagpasok ng araw ay nagpapahintulot sa mga samad na matuyo",
+        "Ang sclerotia production malapit sa lugar ng impeksyon",
+        "Ang itim na sclerotia ay bumabagos at nabubuhay sa lupa",
+        "Ang impeksyon ay kumakalat sa buong larangan sa pamamagitan ng tubig sa irigasyon",
+        "Sa mabigat na kaso: malawak na pagkamatay ng dahon at kahinaan ng tanom",
+        "Mas inaasahang kalagayan sa taas na humidity at mababang liwanag"
+      ],
+      "causes_en": [
+        "Fungus Rhizoctonia solani (teleomorph: Thanetophorus cucumeris)",
+        "Sclerotia and mycelia overwinter in plant debris",
+        "Survives in weed hosts in tropical environments",
+        "Spread via irrigation water during field preparation and flooding",
+        "High humidity (above 70%) and low light favoring disease",
+        "Temperature range of 25-30°C optimal for disease development",
+        "Moisture from irrigation and rain promoting infection",
+        "Closely planted fields increasing disease pressure",
+        "Susceptibility increases with nitrogen fertilizer overuse"
+      ],
+      "causes_ceb": [
+        "Fungus Rhizoctonia solani",
+        "Ang sclerotia at mycelia ay nananatili sa plant debris",
+        "Nabubuhay sa mga host na weed sa tropical environment",
+        "Kumakalat sa pamamagitan ng tubig sa irigasyon",
+        "Taas na humidity at mababang liwanag na pabor sa sakit",
+        "Temperatura mula 25-30°C optimal para sa pag-unlad ng sakit",
+        "Kaligayahan mula sa irigasyon at ulan na nagpo-promote ng impeksyon",
+        "Malalim na nakapagtanim na mga larangan na nagpapataas ng presyon ng sakit",
+        "Ang pagiging madaling masadyang tanim ay tumataas sa labis na paggamit ng nitrogen"
+      ],
+      "image_url": "/images/diseases/sheath_blight.jpg",
+      "symptoms_summary_en": "Sheath blight symptoms first appear as circular or oblong lesions on lower leaf sheaths, typically appearing green-gray and water-soaked. These are usually first noticed during late tillering or early stem elongation stages. As disease progresses under high humidity, lesions spread upward to envelop the entire sheath and move onto leaves. When conditions dry, lesions turn tan to brown with distinct brown borders. Black sclerotia develop within lesions about 6 days after infection. Severe infections result in complete leaf death and plant collapse.",
+      "prevention_summary_en": "Practice thorough crop residue removal and composting since no resistant varieties exist. Maintain proper row spacing for air circulation and reduce humidity. Apply moderate nitrogen fertilization as excessive nitrogen promotes disease. Manage irrigation to reduce prolonged wetness during high-risk growth stages (late tillering). Ensure proper field drainage. Disinfect equipment between fields and seasons to prevent spread. Monitor fields during high-risk periods for early symptoms.",
+      "treatment_summary_en": "Apply fungicides (hexaconazole, propiconazole, carbendazim) at the first sign of symptoms, typically during late tillering stage. Apply at 10-14 day intervals if conditions favor continued disease development. Ensure complete coverage of lower sheaths and affected areas. Reduce irrigation frequency and improve drainage to support chemical control. Remove heavily infected tillers if infestation is localized. Follow local agricultural office recommendations for fungicide selection and rates."
+    }
+  ],
+  "prevention_notes": {
+    "general_en": "Regular field scouting and early detection are key to successful disease management. Always follow local agriculture office recommendations for approved chemicals and products.",
+    "general_ceb": "Ang regular na pag-scout sa uma at maagang pagtukoy ay susi sa matagumpay na pamamahala ng sakit. Laging sundin ang rekomendasyon ng lokal na agriculture office."
+  },
+  "management_priorities": {
+    "high_priority_en": [
+      "Early detection and quick action",
+      "Use resistant varieties when available",
+      "Maintain proper field drainage",
+      "Apply balanced fertilization",
+      "Practice good field sanitation"
+    ],
+    "high_priority_ceb": [
+      "Maagang pagtukoy at mabilis na aksyon",
+      "Gamitin ang resistant na barayti kung available",
+      "Mapanatili ang tamang drainage sa uma",
+      "Mag-apply ng balanseng abono",
+      "Gawin ang limpyo sa para sa kahinlo"
+    ]
+  }
+}
