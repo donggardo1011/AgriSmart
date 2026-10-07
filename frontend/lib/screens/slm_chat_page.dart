@@ -1,192 +1,229 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import '../api/offline_stt.dart';
-import '../api/stt_model_downloader.dart';
-import '../slm/local_slm.dart';
-import '../slm/model_downloader.dart';
-import '../theme/kinaiya_colors.dart';
-import '../widgets/kinaiya_header.dart';
-import '../widgets/kinaiya_layout.dart';
-import '../widgets/kinaiya_widgets.dart';
-import 'slm_chat_page.dart';
-
-class SlmTestPage extends StatefulWidget {
-  static const routeName = '/slm-test';
-  const SlmTestPage({super.key});
+class SlmChatPage extends StatefulWidget {
+  static const routeName = '/slm-chat';
+  const SlmChatPage({super.key});
 
   @override
-  State<SlmTestPage> createState() => _SlmTestPageState();
+  State<SlmChatPage> createState() => _SlmChatPageState();
 }
 
-class _SlmTestPageState extends State<SlmTestPage> with TickerProviderStateMixin {
-  bool _downloadingSlm = false;
-  bool _downloadingStt = false;
+class _SlmChatPageState extends State<SlmChatPage> {
+  bool _downloading = false;
   String? _error;
   double _downloadProgress = 0;
   String _downloadLabel = '';
-  
-  bool _sttExists = false;
   bool _slmExists = false;
+  
+  late String _slmModelUrl;
+  late String _slmModelSize;
 
   @override
   void initState() {
     super.initState();
-    _checkExistingModels();
+    _loadEnvConfig();
+    _checkExistingModel();
   }
 
-  Future<void> _checkExistingModels() async {
-    final appDir = await getApplicationSupportDirectory();
-    final sttFile = File('${appDir.path}${Platform.pathSeparator}whisper_tiny.bin');
-    final sttEngineFile = File('${appDir.path}${Platform.pathSeparator}ggml-tiny.bin');
-    final slmFile = await LocalSlm.getModelFile();
-    
-    if (mounted) {
-      setState(() {
-        _sttExists = sttFile.existsSync() || sttEngineFile.existsSync();
-        _slmExists = slmFile.existsSync();
-      });
+  void _loadEnvConfig() {
+    _slmModelUrl = dotenv.env['SLM_MODEL_URL'] ?? 'https://huggingface.co/itlwas/Qwen2-1.5B-Instruct-Q4_K_M-GGUF/resolve/main/qwen2-1.5b-instruct-q4_k_m.gguf?download=true';
+    _slmModelSize = dotenv.env['SLM_MODEL_SIZE'] ?? '940';
+  }
+
+  Future<void> _checkExistingModel() async {
+    try {
+      final appDir = await getApplicationSupportDirectory();
+      final slmDir = Directory('${appDir.path}${Platform.pathSeparator}slm_models');
+      final modelFile = File('${slmDir.path}${Platform.pathSeparator}model.bin');
+      
+      if (mounted) {
+        setState(() {
+          _slmExists = slmDir.existsSync() && 
+                      slmDir.listSync().isNotEmpty &&
+                      modelFile.existsSync();
+        });
+      }
+    } catch (e) {
+      if (mounted) setState(() => _error = 'Error checking model: ${e.toString()}');
     }
   }
 
-  void _openSlmChat() {
-    Navigator.pushNamed(context, SlmChatPage.routeName);
+  // Static method to retrieve SLM model path - can be used by other screens
+  static Future<String?> getSlmModelPath() async {
+    try {
+      final appDir = await getApplicationSupportDirectory();
+      final modelFile = File('${appDir.path}${Platform.pathSeparator}slm_models${Platform.pathSeparator}model.bin');
+      return modelFile.existsSync() ? modelFile.path : null;
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<void> _downloadSlm() async {
     setState(() {
-      _downloadingSlm = true;
+      _downloading = true;
       _error = null;
       _downloadProgress = 0;
-      _downloadLabel = 'Initializing SLM core...';
+      _downloadLabel = 'Initializing SLM download...';
     });
 
     try {
-      await ModelDownloader.download(onProgress: (p, downloaded, total) {
-        if (!mounted) return;
-        setState(() {
-          _downloadProgress = p;
-          final mb = (downloaded / (1024 * 1024)).toStringAsFixed(1);
-          _downloadLabel = 'Downloading Llama: $mb MB';
-        });
-      });
-      await LocalSlm.init();
-      await _checkExistingModels();
-      if (!mounted) return;
-      setState(() {
-        _downloadLabel = 'SLM ready.';
-        _downloadProgress = 1.0;
-      });
-    } catch (e) {
-      if (!mounted) return;
-      setState(() => _error = 'SLM Error: ${e.toString()}');
-    } finally {
-      if (mounted) setState(() => _downloadingSlm = false);
-    }
-  }
+      // Simulate download progress
+      final httpClient = HttpClient();
+      final request = await httpClient.getUrl(Uri.parse(_slmModelUrl));
+      final response = await request.close();
 
-  Future<void> _downloadStt() async {
-    setState(() {
-      _downloadingStt = true;
-      _error = null;
-      _downloadProgress = 0;
-      _downloadLabel = 'Connecting to Neural Hub...';
-    });
-
-    try {
-      await SttModelDownloader.download(onProgress: (p, downloaded, total) {
-        if (mounted) {
-          setState(() {
-            _downloadProgress = p;
-            final mb = (downloaded / (1024 * 1024)).toStringAsFixed(1);
-            _downloadLabel = 'Downloading Whisper: $mb MB';
-          });
+      if (response.statusCode == 200) {
+        final appDir = await getApplicationSupportDirectory();
+        final slmDir = Directory('${appDir.path}${Platform.pathSeparator}slm_models');
+        
+        if (!slmDir.existsSync()) {
+          slmDir.createSync(recursive: true);
         }
-      });
 
-      await OfflineStt.instance.init();
-      await _checkExistingModels();
-      
-      if (mounted) {
-        setState(() {
-          _downloadLabel = 'Voice Recognition Ready.';
-          _downloadProgress = 1.0;
-        });
+        final modelFile = File('${slmDir.path}${Platform.pathSeparator}model.bin');
+        final contentLength = response.contentLength;
+        int downloaded = 0;
+
+        final sink = modelFile.openWrite();
+        
+        response.listen(
+          (List<int> chunk) {
+            sink.add(chunk);
+            downloaded += chunk.length;
+            final progress = contentLength > 0 ? downloaded / contentLength : 0.0;
+            
+            if (mounted) {
+              setState(() {
+                _downloadProgress = progress;
+                final mb = (downloaded / (1024 * 1024)).toStringAsFixed(1);
+                _downloadLabel = 'Downloading SLM: $mb MB';
+              });
+            }
+          },
+          onDone: () async {
+            await sink.close();
+            
+            // Verify the file was saved properly
+            try {
+              final appDir = await getApplicationSupportDirectory();
+              final modelFile = File('${appDir.path}${Platform.pathSeparator}slm_models${Platform.pathSeparator}model.bin');
+              
+              if (modelFile.existsSync()) {
+                final fileSize = modelFile.lengthSync();
+                
+                // Save download metadata for future reference
+                final metadataFile = File('${appDir.path}${Platform.pathSeparator}slm_models${Platform.pathSeparator}metadata.json');
+                await metadataFile.writeAsString(jsonEncode({
+                  'downloaded_at': DateTime.now().toIso8601String(),
+                  'model_size': fileSize,
+                  'model_version': '1.0',
+                  'url': _slmModelUrl,
+                }));
+                
+                await _checkExistingModel();
+                
+                if (mounted) {
+                  setState(() {
+                    _downloadLabel = 'SLM ready! (${(fileSize / (1024 * 1024)).toStringAsFixed(1)} MB)';
+                    _downloadProgress = 1.0;
+                  });
+                }
+              } else {
+                throw Exception('Model file was not saved to device.');
+              }
+            } catch (e) {
+              if (mounted) {
+                setState(() => _error = 'Failed to verify model: ${e.toString()}');
+              }
+            }
+          },
+          onError: (e) {
+            sink.close();
+            final appDir = getApplicationSupportDirectory();
+            appDir.then((dir) {
+              final modelFile = File('${dir.path}${Platform.pathSeparator}slm_models${Platform.pathSeparator}model.bin');
+              if (modelFile.existsSync()) {
+                modelFile.deleteSync();
+              }
+            });
+            if (mounted) {
+              setState(() => _error = 'Download error: ${e.toString()}');
+            }
+          },
+        );
+      } else {
+        throw Exception('Failed to download: HTTP ${response.statusCode}');
       }
+      
+      httpClient.close();
     } catch (e) {
-      if (mounted) setState(() => _error = 'STT Error: $e');
+      if (mounted) {
+        setState(() => _error = 'SLM Error: ${e.toString()}');
+      }
     } finally {
-      if (mounted) setState(() => _downloadingStt = false);
+      if (mounted) setState(() => _downloading = false);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
-      backgroundColor: KinaiyaColors.background,
-      body: Stack(
-        children: [
-          // Background decorative elements
-          Positioned(
-            top: -100,
-            right: -100,
-            child: Container(
-              width: 300,
-              height: 300,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: KinaiyaColors.primary.withOpacity(0.05),
+      appBar: AppBar(
+        title: const Text('Offline AI Assistant'),
+        centerTitle: false,
+        elevation: 0,
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 16),
+              
+              _SLMCard(
+                title: 'Meta Llama 3.2 (1B)',
+                description: 'Powerful offline AI for text analysis, grammar correction, and intelligent responses.',
+                isReady: _slmExists,
+                isDownloading: _downloading,
+                sizeLabel: '$_slmModelSize MB',
+                onDownload: _downloadSlm,
               ),
-            ),
-          ),
-          KinaiyaMobileContainer(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                KinaiyaTopHeader(
-                  title: 'LOCAL INTELLIGENCE', 
-                  subtitle: 'Manage on-device language models',
-                  onBack: () => Navigator.maybePop(context),
-                ),
-                const SizedBox(height: 24),
-                
-                _ModelCard(
-                  title: 'OpenAI Whisper Tiny',
-                  description: 'Used for offline, real-time speech-to-text and reading diagnostics.',
-                  icon: Icons.auto_awesome_rounded,
-                  isReady: _sttExists,
-                  isDownloading: _downloadingStt,
-                  sizeLabel: '75 MB',
-                  onDownload: _downloadStt,
-                ),
-                
-                const SizedBox(height: 16),
-                
-                _ModelCard(
-                  title: 'Meta Llama 3.2 (1B)',
-                  description: 'Used for offline grammar correction and student response analysis.',
-                  icon: Icons.psychology_rounded,
-                  isReady: _slmExists,
-                  isDownloading: _downloadingSlm,
-                  sizeLabel: '940 MB',
-                  onDownload: _downloadSlm,
-                ),
-                
-                const SizedBox(height: 24),
-                
-                if (_downloadingSlm || _downloadingStt || _downloadProgress > 0) ...[
-                  KinaiyaCard(
+              
+              const SizedBox(height: 24),
+              
+              if (_downloading || _downloadProgress > 0) ...[
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(_downloadLabel, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black87)),
-                            Text('${(_downloadProgress * 100).toInt()}%', style: const TextStyle(fontWeight: FontWeight.w900, color: KinaiyaColors.primary)),
+                            Text(
+                              _downloadLabel,
+                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              '${(_downloadProgress * 100).toInt()}%',
+                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: colorScheme.primary,
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 12),
@@ -195,75 +232,104 @@ class _SlmTestPageState extends State<SlmTestPage> with TickerProviderStateMixin
                           child: LinearProgressIndicator(
                             value: _downloadProgress <= 0 ? null : _downloadProgress,
                             minHeight: 12,
-                            backgroundColor: KinaiyaColors.muted.withOpacity(0.3),
-                            valueColor: const AlwaysStoppedAnimation<Color>(KinaiyaColors.primary),
+                            backgroundColor: Colors.grey.withOpacity(0.3),
+                            valueColor: AlwaysStoppedAnimation<Color>(colorScheme.primary),
                           ),
                         ),
                       ],
                     ),
                   ),
-                ],
-                
-                if (_error != null) ...[
-                  const SizedBox(height: 12),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: KinaiyaColors.kinaiyaRed.withOpacity(0.05),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: KinaiyaColors.kinaiyaRed.withOpacity(0.2)),
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.error_outline_rounded, color: KinaiyaColors.kinaiyaRed, size: 20),
-                        const SizedBox(width: 10),
-                        Expanded(child: Text(_error!, style: const TextStyle(color: KinaiyaColors.kinaiyaRed, fontSize: 13, fontWeight: FontWeight.bold))),
-                      ],
-                    ),
+                ),
+              ],
+              
+              if (_error != null) ...[
+                const SizedBox(height: 12),
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.red.withOpacity(0.05),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.red.withOpacity(0.2)),
                   ),
-                ],
-
-                if (_slmExists) ...[
-                  const SizedBox(height: 14),
-                  KinaiyaGradientButton(
-                    text: 'Open SLM Chat',
-                    icon: Icons.chat_bubble_rounded,
-                    onPressed: _openSlmChat,
-                  ),
-                ],
-                
-                const Spacer(),
-                Opacity(
-                  opacity: 0.6,
-                  child: Text(
-                    'Models are stored locally and encrypted for privacy.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: Colors.blueGrey.shade800),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.error_outline_rounded, color: Colors.red, size: 20),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          _error!,
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 20),
               ],
-            ),
+
+              if (_slmExists) ...[
+                const SizedBox(height: 16),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.green.withOpacity(0.05),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.green.withOpacity(0.3)),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.check_circle_rounded, color: Colors.green),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              'Model ready! Use the AgriBot Assistant to chat.',
+                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: Colors.green[700],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+              
+              const SizedBox(height: 32),
+              Opacity(
+                opacity: 0.6,
+                child: Text(
+                  'Models are stored locally and encrypted for privacy.',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 }
 
-class _ModelCard extends StatelessWidget {
+class _SLMCard extends StatelessWidget {
   final String title;
   final String description;
-  final IconData icon;
   final bool isReady;
   final bool isDownloading;
   final String sizeLabel;
   final VoidCallback onDownload;
 
-  const _ModelCard({
+  const _SLMCard({
     required this.title,
     required this.description,
-    required this.icon,
     required this.isReady,
     required this.isDownloading,
     required this.sizeLabel,
@@ -272,6 +338,8 @@ class _ModelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       decoration: BoxDecoration(
@@ -280,15 +348,15 @@ class _ModelCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: isReady 
-              ? KinaiyaColors.kinaiyaGreen.withOpacity(0.1) 
+              ? Colors.green.withOpacity(0.1) 
               : Colors.black.withOpacity(0.03),
             blurRadius: 20,
-            offset: const Offset(0, 😎,
+            offset: const Offset(0, 8),
           ),
         ],
         border: Border.all(
           color: isReady 
-              ? KinaiyaColors.kinaiyaGreen.withOpacity(0.3) 
+              ? Colors.green.withOpacity(0.3) 
               : Colors.black.withOpacity(0.05),
           width: 1.5,
         ),
@@ -302,33 +370,64 @@ class _ModelCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: (isReady ? KinaiyaColors.kinaiyaGreen : KinaiyaColors.primary).withOpacity(0.1),
+                  color: (isReady ? Colors.green : colorScheme.primary).withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(icon, color: isReady ? KinaiyaColors.kinaiyaGreen : KinaiyaColors.primary, size: 24),
+                child: Icon(
+                  Icons.psychology_rounded,
+                  color: isReady ? Colors.green : colorScheme.primary,
+                  size: 24,
+                ),
               ),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(title, style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 16, fontFamily: 'Outfit')),
-                    Text(sizeLabel, style: TextStyle(color: Colors.black38, fontSize: 12, fontWeight: FontWeight.bold)),
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    Text(
+                      sizeLabel,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 ),
               ),
               if (isReady)
-                const Icon(Icons.check_circle_rounded, color: KinaiyaColors.kinaiyaGreen, size: 28)
+                Icon(
+                  Icons.check_circle_rounded,
+                  color: Colors.green,
+                  size: 28,
+                )
             ],
           ),
           const SizedBox(height: 14),
-          Text(description, style: TextStyle(color: Colors.black54, fontSize: 13, height: 1.4)),
+          Text(
+            description,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: Colors.grey[700],
+              height: 1.4,
+            ),
+          ),
           const SizedBox(height: 20),
           if (!isReady)
-            KinaiyaGradientButton(
-              text: isDownloading ? 'Downloading Hub...' : 'Prepare Engine',
+            FilledButton(
               onPressed: isDownloading ? null : onDownload,
-              icon: Icons.auto_mode_rounded,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.download_rounded),
+                  const SizedBox(width: 8),
+                  Text(isDownloading ? 'Downloading...' : 'Download SLM'),
+                ],
+              ),
             ),
         ],
       ),

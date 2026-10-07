@@ -1,8 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVirus, faPencilAlt, faUndo, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 import AdminLayout from '@/app/(admin)/layout';
 import { apiRequest, authHeaders } from '@/lib/api';
 
@@ -22,7 +20,6 @@ interface Disease {
 
 export default function ChatbotAdminPage() {
   const [diseases, setDiseases] = useState<Disease[]>([]);
-  const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<Disease | null>(null);
   const [saving, setSaving] = useState(false);
 
@@ -31,7 +28,6 @@ export default function ChatbotAdminPage() {
   }, []);
 
   async function load() {
-    setLoading(true);
     try {
       const token = window.localStorage.getItem('admin_access_token') ?? '';
       const data = await apiRequest<Disease[]>('/api/diseases', {
@@ -40,8 +36,6 @@ export default function ChatbotAdminPage() {
       setDiseases(data);
     } catch (err) {
       console.error('Failed to load diseases', err);
-    } finally {
-      setLoading(false);
     }
   }
 
